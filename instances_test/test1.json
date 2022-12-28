@@ -1,0 +1,9 @@
+{
+  "e_min": 2,
+  "e_max": 4,
+  "L_max": 15,
+  "cd": 0.13,
+  "r_min": 15,
+  "capacites": [50000,50000,60000,60000,70000],
+  "Articles": [{"id":1,"nombre":10736,"prix":3.43,"indice":5},{"id":2,"nombre":6403,"prix":4.49,"indice":3},{"id":3,"nombre":9539,"prix":2.43,"indice":4},{"id":4,"nombre":12688,"prix":4.72,"indice":6},{"id":5,"nombre":9507,"prix":4.03,"indice":4},{"id":6,"nombre":7389,"prix":3.78,"indice":3},{"id":7,"nombre":8680,"prix":4.35,"indice":4},{"id":8,"nombre":5203,"prix":1.94,"indice":2},{"id":9,"nombre":4323,"prix":1.32,"indice":2},{"id":10,"nombre":15264,"prix":3.62,"indice":7},{"id":11,"nombre":4024,"prix":2.72,"indice":2},{"id":12,"nombre":11165,"prix":3.6,"indice":5},{"id":13,"nombre":16182,"prix":4.56,"indice":8},{"id":14,"nombre":2632,"prix":2.29,"indice":1},{"id":15,"nombre":12070,"prix":2.69,"indice":6},{"id":16,"nombre":11413,"prix":1.39,"indice":5},{"id":17,"nombre":19538,"prix":2.42,"indice":9},{"id":18,"nombre":2997,"prix":1.79,"indice":1},{"id":19,"nombre":12326,"prix":1.43,"indice":6},{"id":20,"nombre":2314,"prix":1.98,"indice":1},{"id":21,"nombre":13820,"prix":3.47,"indice":6},{"id":22,"nombre":7341,"prix":2.79,"indice":3},{"id":23,"nombre":9671,"prix":3.83,"indice":4},{"id":24,"nombre":16879,"prix":1.42,"indice":8},{"id":25,"nombre":4299,"prix":1.35,"indice":2}]
+}
