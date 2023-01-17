@@ -68,10 +68,10 @@ def print_donnees(donnees):
     print("prix : ", donnees.Articles[0].prix)
     print("indice : ", donnees.Articles[0].indice)
 
-test1 = import_donnees_from_json("instances_test/test1.json")
-test2 = import_donnees_from_json("instances_test/test2.json")
-test3 = import_donnees_from_json("instances_test/test3.json")
+# test1 = import_donnees_from_json("instances_test/test1.json")
+# test2 = import_donnees_from_json("instances_test/test2.json")
+# test3 = import_donnees_from_json("instances_test/test3.json")
 
-print(test1.borne_trivial())
-print(test2.borne_trivial())
-print(test3.borne_trivial())
+# print(test1.borne_trivial())
+# print(test2.borne_trivial())
+# print(test3.borne_trivial())
