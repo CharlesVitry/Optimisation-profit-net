@@ -133,7 +133,14 @@ def verif(solution):
             original.Articles[article.id-1].nombre -= nb_make
 
     vecteur_condition = []
+
     for article in original.Articles:
         vecteur_condition.append(article.nombre >= 0)
+
+    vecteur_condition.append(max([len(lot[0])
+                             for lot in solution]) <= original.e_max)
+
+    vecteur_condition.append(min([len(lot[0])
+                             for lot in solution]) >= original.e_min)
 
     return all(vecteur_condition)
