@@ -51,7 +51,8 @@ def gloutonne1(D):
 
     print("Capacités finales : " + str(D.capacites))
     print("Capacités restantes : " + str(sum(D.capacites)))
-    return lots_utilisés 
+    return lots_utilisés
+
 
 def gloutonne2(D):
     print("Borne trivial de l'instance : " + str(D.borne_trivial()))
@@ -78,11 +79,11 @@ def gloutonne2(D):
             break
 
         # conditionnement des lots
-        N = min([article.nombre for article in lot]) * len(lot) 
+        N = min([article.nombre for article in lot]) * len(lot)
         condix_max = sum(D.capacites)
         if N > condix_max:
             N = condix_max
-    
+
         lot_utilise.append([lot, N / len(lot), N / len(lot)])
         for article in lot:
             article.nombre -= N / len(lot)
@@ -92,13 +93,14 @@ def gloutonne2(D):
                 D.capacites[D.capacites.index(capacite)] -= N_par_condi
                 N -= N_par_condi
                 break
-        
+
         # on remet tt à jour
         for article in D.Articles:
-            article.set_poids(article.nombre * article.prix * 0.1 * article.indice)
+            article.set_poids(
+                article.nombre * article.prix * 0.1 * article.indice)
         D.Articles = sorted(D.Articles, key=lambda x: x.poids, reverse=True)
 
-    print("Nombre de lots utilisés : " + str(len(lot_utilise)))   
+    print("Nombre de lots utilisés : " + str(len(lot_utilise)))
     print("Capacités finales : " + str(D.capacites))
     print("Capacités restantes : " + str(sum(D.capacites)))
     return lot_utilise
@@ -122,3 +124,16 @@ score = sum([lot[2] * (sum([article.prix for article in lot[0]]) -
 print("Score gloutonne : " + str(round(score)))
 
 
+def verif(solution):
+    original = import_donnees_from_json(instance)
+
+    for lot in solution:
+        nb_make = lot[2]
+        for article in lot[0]:
+            original.Articles[article.id-1].nombre -= nb_make
+
+    vecteur_condition = []
+    for article in original.Articles:
+        vecteur_condition.append(article.nombre >= 0)
+
+    return all(vecteur_condition)
