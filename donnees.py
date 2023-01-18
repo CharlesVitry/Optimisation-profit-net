@@ -8,7 +8,10 @@ class Article:
     nombre: int
     prix: float
     indice: int
+    poids: float = field(init=False)
 
+    def set_poids(self, poids):
+        self.poids = poids
 
 @dataclass
 class donnees:
