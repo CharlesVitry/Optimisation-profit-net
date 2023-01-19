@@ -45,8 +45,6 @@ def gloutonne1(D):
                 D.capacites[D.capacites.index(capacite)] -= N
                 lot[2] += N / len(lot[0])
                 break
-    # filtrage des lots non utilisés
-    lots_utilisés = list(filter(lambda x: x[2] > 0, lots_utilisés))
 
     print("Capacités finales : " + str(D.capacites))
     print("Capacités restantes : " + str(sum(D.capacites)))
