@@ -68,9 +68,7 @@ def local_search(D, solution):
             
             # def condition d'arret si possible
             if (article_to_add.nombre > nombre_article_to_add and sum(D.capacites) >= nombre_article_to_add):                 
-                # on regarde si la quantité est suffisante 
-                print(type(lot[0]))
-                print(lot[0])  
+                # on regarde si la quantité est suffisante   
                 lot[0].append(article_to_add)
                 D.Articles[D.Articles.index(article_to_add)].nombre -= nombre_article_to_add
 
