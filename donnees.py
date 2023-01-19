@@ -12,7 +12,12 @@ class Article:
 
     def set_poids(self, poids):
         self.poids = poids
-
+    
+    def __hash__(self):
+        return hash(str(self))
+    
+    def __eq__(self,other):
+        return self.id == other.id
 
 @dataclass
 class donnees:
@@ -36,6 +41,8 @@ class donnees:
             Score += n * (article.prix - self.cd)
             D += n
         return Score
+    
+    
 
 
 def import_donnees_from_json(chemin):
