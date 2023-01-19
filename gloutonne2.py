@@ -53,38 +53,39 @@ def gloutonne2(D):
 
 
 def local_search(D, solution):
-    
-    for _ in range(10):
+    print("Capacités initial : " + str(D.capacites))
+    print("Somme des capacités : " + str(sum(D.capacites)))
+
+    for _ in range(100):
         # select un lot random from solution 
         lot = random.choice(solution)
-        
         articles_dispo = [article for article in D.Articles if article not in lot[0]]
 
         # si le lot est pas à sa capacité max, on essaye de rajouter un article de la liste des articles dispo
         if len(lot[0]) + 1 <= D.e_max:
             article_to_add = random.choice(articles_dispo)
-            nombre_article_to_add = lot[2] / len(lot[0])
-
-            # def condition d'arret si impossible 
-            print("lot n :" + str(lot[2] / len(lot[0])))
-            print("article à ajouter : " + str(article_to_add.id))
-            print("Nombre d'article à ajouter : " + str(nombre_article_to_add))
-            # on regarde si la quantité est suffisante 
-            if article_to_add.nombre > nombre_article_to_add:  
+            nombre_article_to_add = lot[2] 
+            
+            # def condition d'arret si possible
+            if (article_to_add.nombre > nombre_article_to_add and sum(D.capacites) >= nombre_article_to_add):                 
+                # on regarde si la quantité est suffisante 
+                print(type(lot[0]))
+                print(lot[0])  
                 lot[0].append(article_to_add)
-                lot[2] += nombre_article_to_add
-                article_to_add.nombre -= nombre_article_to_add
+                D.Articles[D.Articles.index(article_to_add)].nombre -= nombre_article_to_add
 
-            # on met à jours les capacités 
-            for capacite in D.capacites:
-                if capacite > 0:
-                    N_par_condi = min(nombre_article_to_add, capacite)
-                    D.capacites[D.capacites.index(capacite)] -= N_par_condi
-                    nombre_article_to_add -= N_par_condi
-                    break
-            print("ek : "+ str(len(lot[0])))
-        # select un article random from lot
-        article_to_swap = random.choice(lot[0])
+                # on met à jours les capacités 
+                for capacite in D.capacites:
+                    if capacite > 0:
+                        N_par_condi = min(nombre_article_to_add, capacite)
+                        D.capacites[D.capacites.index(capacite)] -= N_par_condi
+                        nombre_article_to_add -= N_par_condi
+                        break
+        # sinon on essaye de swap un article du lot avec un article de la liste des articles dispo
+        else : 
+            article_to_swap = random.choice(lot[0])
+            article_to_add = random.choice(articles_dispo)
+
 
     print("Nombre de lots utilisés : " + str(len(solution)))
     print("Capacités finales : " + str(D.capacites))

@@ -8,12 +8,12 @@ def gloutonne1(D):
 
     print("Borne trivial de l'instance : " + str(D.borne_trivial()))
     print("Somme des capacités : " + str(C))
-
+    
     # Lots possibles
     lots = list(chain(*map(lambda x: combinations(D.Articles, x),
                 range(D.e_min, D.e_max + 1))))
     print("Nombre de lots possibles : " + str(len(lots)))
-
+    
     # Lots avec un indice commercial suffisant
     lots = list(filter(lambda x: sum(
         [article.indice for article in x]) >= D.r_min, lots))
@@ -22,6 +22,8 @@ def gloutonne1(D):
     # Trie par profit net décroissant/ nombre d'articles
     lots = sorted(lots, key=lambda x: len(
         x) / (sum([article.prix for article in x]) - D.cd * len(x)))
+    
+    lots = [list(lot) for lot in lots]
 
     lots_utilisés = []
 
@@ -48,4 +50,4 @@ def gloutonne1(D):
 
     print("Capacités finales : " + str(D.capacites))
     print("Capacités restantes : " + str(sum(D.capacites)))
-    return lots_utilisés
+    return D, lots_utilisés

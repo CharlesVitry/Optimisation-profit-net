@@ -15,6 +15,8 @@ def contraintes(solution, instance):
     for article in original.Articles:
         vecteur_condition.append(article.nombre >= 0)
 
+    
+
     # Articles distincts dans un lot
     for lot in solution:
         vecteur_condition.append(len(lot[0]) == len(set(lot[0])))
