@@ -1,4 +1,5 @@
 import random
+from objectif import *
 
 def gloutonne2(D):
     print("Borne trivial de l'instance : " + str(D.borne_trivial()))
@@ -52,20 +53,20 @@ def gloutonne2(D):
     return D, lot_utilise
 
 
-def local_search(D, solution):
+def local_search(D, solution, nbr_iter):
     print("Capacités initial : " + str(D.capacites))
     print("Somme des capacités : " + str(sum(D.capacites)))
 
-    for _ in range(100):
+    for _ in range(nbr_iter):
         # select un lot random from solution 
         lot = random.choice(solution)
         articles_dispo = [article for article in D.Articles if article not in lot[0]]
 
+        nombre_article_to_add = lot[2] 
+
         # si le lot est pas à sa capacité max, on essaye de rajouter un article de la liste des articles dispo
         if len(lot[0]) + 1 <= D.e_max:
             article_to_add = random.choice(articles_dispo)
-            nombre_article_to_add = lot[2] 
-            
             # def condition d'arret si possible
             if (article_to_add.nombre > nombre_article_to_add and sum(D.capacites) >= nombre_article_to_add):                 
                 # on regarde si la quantité est suffisante   
@@ -81,10 +82,25 @@ def local_search(D, solution):
                         break
         # sinon on essaye de swap un article du lot avec un article de la liste des articles dispo
         else : 
+            score_actuel = objectif(D, solution)
+
             article_to_swap = random.choice(lot[0])
             article_to_add = random.choice(articles_dispo)
 
+            if(article_to_add.nombre > nombre_article_to_add):
+                lot[0].remove(article_to_swap)
+                lot[0].append(article_to_add)
+                if (random.random() < 0.1 and sum([article.indice for article in lot[0]]) >= D.r_min):
+                    D.Articles[D.Articles.index(article_to_add)].nombre -= nombre_article_to_add
+                    D.Articles[D.Articles.index(article_to_swap)].nombre += nombre_article_to_add
+                elif (objectif(D, solution) > score_actuel and sum([article.indice for article in lot[0]]) >= D.r_min):
+                    D.Articles[D.Articles.index(article_to_add)].nombre -= nombre_article_to_add
+                    D.Articles[D.Articles.index(article_to_swap)].nombre += nombre_article_to_add
+                else:
+                    lot[0].remove(article_to_add)
+                    lot[0].append(article_to_swap)
 
+            
     print("Nombre de lots utilisés : " + str(len(solution)))
     print("Capacités finales : " + str(D.capacites))
     print("Capacités restantes : " + str(sum(D.capacites)))
