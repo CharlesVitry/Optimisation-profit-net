@@ -22,6 +22,11 @@ def gloutonne2(D):
             ek += 1
             if rk >= D.r_min and ek >= D.e_min:
                 break
+            if ek == D.e_max:
+                lot.remove(article)
+                rk -= article.indice
+                ek -= 1
+                pass
         if ek > D.e_max:
             break
 
