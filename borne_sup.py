@@ -12,15 +12,15 @@ def borne_lagrangienne(D):
 
     while i < itermax:
         # Résolution du sous-problème Lagrangien 𝐒𝐏𝐋𝟏(λ, 𝜇) → 𝑥𝑖𝑘(̅̅̅̅̅ λ, 𝜇)
-
-        # couts régus
+        # xik = nombre d’articles de type i impliqué dans les lots de type k
+        # couts régus       
 
         # Résolution du sous-problème Lagrangien 𝐒𝐏𝐋𝟐(λ) → 𝑦𝑖𝑘(̅̅̅̅̅ λ)
-
+        # yik = 1 si l’article i est constitutif d’un lot de type k, 0 sinon
         # couts régus
 
         # Résolution du sous-problème Lagrangien 𝐒𝐏𝐋𝟑( 𝜇) → 𝑢𝑘 (̅̅̅̅̅ 𝜇)
-
+        # uk = nombre de lots de type k conditionnés
         # couts régus
 
         # Calcul de la fonction duale
