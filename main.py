@@ -19,7 +19,7 @@ if __name__ == "__main__":
      
     print("\n\n\n\n")
 
-    D_after_local_search, soluce_local_search = local_search(D_after_gloutone, solution_gloutonne, 1000000)
+    D_after_local_search, soluce_local_search = local_search(D_after_gloutone, solution_gloutonne, 100000)
     print("Contraintes validées : " +
           str(contraintes(soluce_local_search, instance)))
     print("Score Heuristique : " + str(objectif(D_after_local_search, soluce_local_search)))

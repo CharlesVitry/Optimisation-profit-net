@@ -1,9 +1,9 @@
 import random
 from objectif import *
+from tqdm import tqdm
 
 def gloutonne2(D):
     print("Borne trivial de l'instance : " + str(D.borne_trivial()))
-    print("Capacités initial : " + str(D.capacites))
     print("Somme des capacités : " + str(sum(D.capacites)))
 
     # Trie des articles par Wi = di * vi * 0.1 * ri
@@ -53,16 +53,14 @@ def gloutonne2(D):
         D.Articles = sorted(D.Articles, key=lambda x: x.poids, reverse=True)
 
     print("Nombre de lots utilisés : " + str(len(lot_utilise)))
-    print("Capacités finales : " + str(D.capacites))
     print("Capacités restantes : " + str(sum(D.capacites)))
     return D, lot_utilise
 
 
 def local_search(D, solution, nbr_iter):
-    print("Capacités initial : " + str(D.capacites))
     print("Somme des capacités : " + str(sum(D.capacites)))
 
-    for _ in range(nbr_iter):
+    for _ in tqdm(range(nbr_iter)):
         # select un lot random from solution 
         lot = random.choice(solution)
         articles_dispo = [article for article in D.Articles if article not in lot[0]]
@@ -107,7 +105,6 @@ def local_search(D, solution, nbr_iter):
 
             
     print("Nombre de lots utilisés : " + str(len(solution)))
-    print("Capacités finales : " + str(D.capacites))
     print("Capacités restantes : " + str(sum(D.capacites)))
     return D, solution
 
