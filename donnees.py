@@ -78,3 +78,14 @@ def print_donnees(donnees):
     print("nombre : ", donnees.Articles[0].nombre)
     print("prix : ", donnees.Articles[0].prix)
     print("indice : ", donnees.Articles[0].indice)
+
+def Articles_to_csv(donnees, name_file):
+    with open(name_file +".csv", "w") as f:
+        f.write("id,nombre,prix,indice \n")
+        for article in donnees.Articles:
+            f.write(f"{article.id},{article.nombre},{article.prix},{article.indice} \n")
+
+if __name__ == "__main__":
+    instance = "instances_test/test3.json"
+    D = import_donnees_from_json(instance)
+    Articles_to_csv(D, instance)
