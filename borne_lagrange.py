@@ -4,7 +4,6 @@ from donnees import *
 
 
 def SP1(D, pi):
-    #y = cp.Variable((len(D.Articles), D.L_max), value = 0)
     y = cp.Constant(np.zeros((len(D.Articles), D.L_max)))
     
     nested_sum = [cp.sum(- pi[i][j] * D.Articles[i].nombre * y[i][j]).value for j in range(D.L_max) for i in range(len(D.Articles))]
@@ -17,15 +16,10 @@ def SP1(D, pi):
     
     prob = cp.Problem(obj, constraints1 + constraints2 + constraints3)
     prob.solve()
-
-    print("status:", prob.status)
-    print("optimal value", prob.value)
-    print("optimal var", y.value)
     return y.value
     
 
 def SP2(D, pi):
-    #x = cp.Variable((len(D.Articles), D.L_max), boolean = False)
     x = cp.Constant(np.zeros((len(D.Articles), D.L_max)))
 
     nested_sum = [cp.sum((D.Articles[i].prix + pi[i][j]) * x[i][j]).value for j in range(D.L_max) for i in range(len(D.Articles))]
@@ -35,10 +29,7 @@ def SP2(D, pi):
 
     prob = cp.Problem(obj, constraints1)
     prob.solve()
-
-    #print("status:", prob.status)
-    #print("optimal value", prob.value)
-    #print("optimal var", x.value)
+    
     return x.value
 
 def sous_grad(D):
